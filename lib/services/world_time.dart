@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 class WorldTime {
   String location, time, flag, url;
+  bool isDay = false;
 
   WorldTime({this.location, this.flag, this.url}) {}
 
@@ -17,9 +18,10 @@ class WorldTime {
       DateTime now = DateTime.parse(datetime);
       now = now.add(Duration(hours: int.parse(offset)));
 
+      isDay = now.hour > 6 && now.hour < 20 ? true : false;
       time = DateFormat.jm().format(now);
+
     } catch(e) {
-        print(e);
         time = "Could'nt get the data";
     }
   }
